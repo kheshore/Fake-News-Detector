@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fake News Detection</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: azure;
+      }
+      h3 {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .container {
+			margin: 0px auto 0;
+			max-width: 700px;
+			padding: 20px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      		background-color: #ffffff;
+      		opacity: 0.9;
+      }
+      .fake-news {
+        color: red;
+        font-weight: bold;
+      }
+      .true-news {
+        color: seagreen;
+        font-weight: bold;
+      }
+      header{
+        background-color: #000000;
+        text-align: center;
+        color: #ffffff;
+
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <br>
+        <h1>Fake News Detection</h1>
+        <h4>By Kheshore JR</h4>
+        <br>
+    </header>
+    <br>
+    <div class="container">
+      <form action="/" method="POST">
+        <label for="txt">Enter news article:</label>
+        <textarea name="txt" rows=5 cols="40"></textarea>
+        <br />
+        <input type="submit" name="submit" value="Check">
+      </form>
+    </div>
+    {% if request.form %}
+    <div class="container">
+      <h3>Entered Text:</h3>
+      <p>{{ request.form['txt'] }}</p>
+      {% if result == 0 %}
+      <h3>The ML Model Found That It's:</h3>
+      <p class="fake-news">Fake News</p>
+      {% else %}
+      <h3>The ML Model Found That It's:</h3>
+      <p class="true-news">True News</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </body>
+</html>
